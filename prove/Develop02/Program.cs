@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Win32.SafeHandles;
 
 class Program
 {
@@ -20,9 +21,8 @@ class Program
 
             string choice = Console.ReadLine();
 
-            switch (choice)
+            if  (choice == "1")
             {
-                case "1":
                 string prompt = promptGen.GetRandomPrompt();
                 Console.WriteLine($"Prompt: {prompt}");
                 Console.Write("Your Response: ");
@@ -30,30 +30,35 @@ class Program
 
                 Entry newEntry = new Entry(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), prompt, response);
                 myJournal.AddEntry(newEntry);
-                break;
-
-                case "2":
+            }
+            else if (choice == "2")
+            {
                 myJournal.DisplayAll();
-                break;
-
-                case "3":
+            }
+            else if ( choice == "3")
+            {
                 Console.Write("Enter a filename to save the journal: ");
                 string saveFilename = Console.ReadLine();
                 myJournal.SaveToFile(saveFilename);
-                break;
-
-                case "4":
+            }
+            else if (choice == "4")
+            {
                 Console.Write("Enter a filename: ");
                 string loadFilename = Console.ReadLine();
                 myJournal.LoadFromFile(loadFilename);
-                break;
-
-                case "5":
+            }
+            else if (choice == "5")
+            {
                 exit = true;
                 Console.WriteLine("goodbye, hope to see you again");
-                break;
-
             }
+            else
+            {
+                Console.WriteLine("Invalid option");
+            
+            }
+
+            
 
         }
     }

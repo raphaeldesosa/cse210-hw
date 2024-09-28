@@ -15,11 +15,11 @@ public class PromptGenerator
         "What could I have done to make today better?"
     };
 
-    private Random _random = new Random();
 
     public string GetRandomPrompt()
     {
-        int index = _random.Next(_prompts.Count);
+        Random random = new Random();
+        int index = random.Next(_prompts.Count);
         return _prompts[index];
     }
 }
